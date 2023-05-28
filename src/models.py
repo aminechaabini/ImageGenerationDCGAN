@@ -31,7 +31,7 @@ class Discriminator(nn.Module):
     def forward(self, x, labels):
         label_embed = self.label_emb(labels).view(labels[0], 1, self.img_size, self.img_size)
         latent_input = torch.cat([x, label_embed], dim=1)
-        return self.model(x)
+        return self.model(latent_input)
 
 
 class Generator(nn.Module):
