@@ -35,12 +35,12 @@ class Discriminator(nn.Module):
 
 
 class Generator(nn.Module):
-    def __init__(self, latent_dim, img_channels, img_size, num_filters, num_classes, embed_size):
+    def __init__(self, noise_channels, img_channels, num_filters, num_classes, embed_size):
         super(Generator, self).__init__()
 
         self.model = nn.Sequential(
             # Input: (latent_dim, 1, 1)
-            nn.ConvTranspose2d(latent_dim+embed_size, num_filters * 8, kernel_size=4, stride=1, padding=0),
+            nn.ConvTranspose2d(noise_channels+embed_size, num_filters * 8, kernel_size=4, stride=1, padding=0),
             nn.BatchNorm2d(num_filters * 8),
             nn.ReLU(True),
 
